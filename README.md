@@ -10,6 +10,7 @@
 - [Техническое задание](https://drive.google.com/file/d/1cqkkF5T1tbHveukGfZ9xDzcllJlMix2C/view?usp=sharing)
 - [Структура хранения жестов в бинарном виде](https://drive.google.com/file/d/1OnO30J-9fwsbOD4GN_hx2NX_UBJOJHLD/view?usp=sharing)
 - [Описание протокола взаимодействия драйвера моторов и управляющего контроллера](https://drive.google.com/file/d/1_azK8TsY6GFS11r03LjgoXlnlsHRx1bY/view?usp=sharing)
+- [Структурные схемы](https://drive.google.com/file/d/1vrgI22urawGpTWdn-38CHDkq6wjfTROy/view?usp=sharing)
 
 ---
 
