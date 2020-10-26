@@ -14,8 +14,61 @@
 |---|---|---|---|---|---|
 |SetOnline|controllers/online|-|X|Online/Offline|Каждый протез отправляет свой id в этот топик каждые 60 секунд для определения того, что он находится в системе и к нему можно получить доступ. Если протез не отправил данные, то можно считать, что он отключен.|
 |Offline|controllers/offline|-|X|Online/Offline|При обрыве связи с MQTT Proxy брокер публикует id протеза с которым был обрыв связи (механизм Last Will у MQTT).|
-|Telemetry|{id}/telemetry|-|+|Telemetry|При обрыве связи с MQTT Proxy брокер публикует id протеза с которым был обрыв связи (механизм Last Will у MQTT).|
+|Telemetry|{id}/data/telemetry|-|X|Telemetry|Телеметрия протеза. Содержит актульную информацию о системе. Обновляется минимум раз в секунду.|
+|GetGestures|{id}/data/gestures|-|X|GetGestures|Актуальные жесты, хранимые на протезе.|
+|SaveGesture|{id}/action/gestures|+|X|SaveGesture|Выполнить сохранение/обновление жеста протеза. После успешного завершения данные в топике **GetGestures** будут обновлены, а в телеметрии будет слаться новое время синхронизации.|
+|DeleteGesture|{id}/action/gestures/remove|+|X|DeleteGesture|Выполнить удаление жеста протеза. После успешного завершения данные в топике **GetGestures** будут обновлены, а в телеметрии будет слаться новое время синхронизации.|
 ## Payload
+
+### Online/Offline
+|Field|Size (bytes)|Data Type|Description|
+|---|---|---|---|
+|Id|Dynemic|StringFormat|Идентификатор протеза в системе|
+
+### Telemetry
+|Field|Size (bytes)|Data Type|Description|
+|---|---|---|---|
+|TelemetryFrequency|2|uint16_t|Частота отправки телеметрии (от 1Гц до 450Гц)|
+|EnableEmg|1|bool|Состояние подключения Emg датчика|
+|EnableDisplay|1|bool|Состояние подключения дисплея|
+|EnableGyro|1|bool|Состояние подключения гироскопа и акселерометра|
+|LastTimeSync|8|long|Время последней синхронизации жестов. В Unix времени|
+|TypeWork|1|TypeWorkEnum|Текущий режим работы протеза|
+|EMG|2|uint16_t|Показания Emg датчика|
+|Gesture|16|UUID|UUID исполняемого жеста. Если значение 0x00, то исполняемого жеста нет. Если значение 0x01, то исполняется жест, который не сохранен на протезе.|
+|Power|1|uint8_t|Уровень заряда протеза в процентах (от 0 до 100%)|
+|DriverTypeWork|1|DriverTypeWorkEnum|Режим работы контроллера линейных приводов|
+|PointerFingerPosition|1|uint8_t|Позиция указательного пальца|
+|MiddleFingerPosition|1|uint8_t|Позиция среднего пальца|
+|RingFinderPosition|1|uint8_t|Позиция безымянного пальца|
+|LittleFingerPosition|1|uint8_t|Позиция мезинца|
+|ThumbFingerPosition|1|uint8_t|Позиция большого пальца|
+
+### GetGestures
+|Field|Size (bytes)|Data Type|Description|
+|---|---|---|---|
+|LastTimeSync|8|long|Время последней синхронизации жестов. В Unix времени|
+|Count|2|uint16_t|Количество жестов|
+|ListGestures|Dynemic|List<Gesture>|Список жестов, хранимых на протезе|
+
+### SaveGesture
+|Field|Size (bytes)|Data Type|Description|
+|---|---|---|---|
+|TimeSync|8|long|Текущее время. Будет использовано для идентификации последнего времеи синхронизации. В Unix времени|
+|IsDelete|1|bool|Флаг необходимости удаления жеста. Должен быть false.|
+|Gesture|Dynemic|Gesture|Жест, который будет сохранен, либо обновлен в системе, если id будет совпадать.|
+
+### DeleteGesture
+|Field|Size (bytes)|Data Type|Description|
+|---|---|---|---|
+|TimeSync|8|long|Текущее время. Будет использовано для идентификации последнего времеи синхронизации. В Unix времени|
+|IsDelete|1|bool|Флаг необходимости удаления жеста. Должен быть true.|
+|id|16|UUID|Id жеста, который будет удален из системы|
+
+
+
+
+## Payload typedef
 ### StringFormat
 |Field|Size (bytes)|Data Type|Description|
 |---|---|---|---|
@@ -32,26 +85,23 @@
 |---|---|---|---|
 |Size|1|uint8_t|[0x00] - InitializationMode - Режим инициализации. В данном режиме происходит расчет минимальных и максимальных положений кисти и пальцев протеза; [0x01] - SleepMode - Режим ожидания. Механические действия не исполняются; [0x02] - SettingPositionMode - Режим установки новых положений; [0x03] - ErrorMode - Режим ошибки. Работа невозможна; [0xFF] - ConnectionError - Соединение с контроллером линейных приводов отсутсвует;|
 
-### Online/Offline
+### Gesture
 |Field|Size (bytes)|Data Type|Description|
 |---|---|---|---|
-|Id|16|StringFormat|Идентификатор протеза в системе|
+|ID|16|UUID|Уникальный идентификатор жеста.|
+|String|Dynemic|StringFormat|Имя жеста|
+|LastTimeSync|8|long|Время создания или последнего изменения. В Unix времени|
+|IterableGesture|1|bool|Состояние итерируемости жеста (бесконечное повторение жеста)|
+|NumberOfGestureRepetitions|1|uint8_t|Количество повторений жеста|
+|NumberOfMotions|1|uint8_t|Кол-во действий в жесте|
+|ListActions|NumberOfMotions * 7|List<GestureAction>|Список действий жеста|
 
-### Telemetry
+### GestureAction
 |Field|Size (bytes)|Data Type|Description|
 |---|---|---|---|
-|TelemetryFrequency|2|uint16_t|Частота отправки телеметрии (от 1Гц до 450Гц)|
-|EnableEmg|1|bool|Состояние подключения Emg датчика|
-|EnableDisplay|1|bool|Состояние подключения дисплея|
-|EnableGyro|1|bool|Состояние подключения гироскопа и акселерометра|
-|LastTimeSync|8|long|Время последней синхронизации. В Unix времени|
-|TypeWork|1|TypeWorkEnum|Текущий режим работы протеза|
-|EMG|2|uint16_t|Показания Emg датчика|
-|Gesture|16|UUID|UUID исполняемого жеста. Если значение 0x00, то исполняемого жеста нет. Если значение 0x01, то исполняется жест, который не сохранен на протезе.|
-|Power|1|uint8_t|Уровень заряда протеза в процентах (от 0 до 100%)|
-|DriverTypeWork|1|DriverTypeWorkEnum|Режим работы контроллера линейных приводов|
 |PointerFingerPosition|1|uint8_t|Позиция указательного пальца|
 |MiddleFingerPosition|1|uint8_t|Позиция среднего пальца|
 |RingFinderPosition|1|uint8_t|Позиция безымянного пальца|
 |LittleFingerPosition|1|uint8_t|Позиция мезинца|
 |ThumbFingerPosition|1|uint8_t|Позиция большого пальца|
+|Delay|2|uint16_t|Задержка до начала выполнения следующего действия жеста|
