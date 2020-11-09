@@ -27,7 +27,7 @@
 ### Online/Offline
 |Field|Size (bytes)|Data Type|Description|
 |---|---|---|---|
-|Id|Dynemic|StringFormat|Идентификатор протеза в системе|
+|Id|Dynemic|string|Идентификатор протеза в системе в UTF-8|
 
 ### Telemetry
 |Field|Size (bytes)|Data Type|Description|
