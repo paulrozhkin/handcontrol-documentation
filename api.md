@@ -77,7 +77,6 @@
 |EnableDisplay|1|bool|Программное отключение/подключение подключения дисплея|
 |EnableGyro|1|bool|Программное отключение/подключение гироскопа и акселерометра|
 |EnableDriver|1|bool|Программное отключение/подключение драйвера линейных приводов|
-|Enable|1|bool|Программное отключение/подключение гироскопа и акселерометра|
 
 ### GetSettings
 |Field|Size (bytes)|Data Type|Description|
@@ -87,7 +86,6 @@
 |EnableDisplay|1|bool|Программное отключение/подключение подключения дисплея|
 |EnableGyro|1|bool|Программное отключение/подключение гироскопа и акселерометра|
 |EnableDriver|1|bool|Программное отключение/подключение драйвера линейных приводов|
-|Enable|1|bool|Программное отключение/подключение гироскопа и акселерометра|
 
 ### PerformGestureId
 |Field|Size (bytes)|Data Type|Description|
@@ -114,7 +112,7 @@
 ### DriverTypeWorkEnum
 |Field|Size (bytes)|Data Type|Description|
 |---|---|---|---|
-|Size|1|uint8_t|[0x00] - InitializationMode - Режим инициализации. В данном режиме происходит инициализация драйвера линейных приводов; [0x02] - ErrorMode - Режим ошибки драйвера линейных приводов. Работа невозможна; [0x03] - ConnectionError - Ошибка соединения с драйвером линейных приводов; [0x05] - ModuleDisabled - Драйвер отключен программно; [0xF1] - SleepMode - Режим ожидания. Механические действия не исполняются; [0xF2] - SettingPositionMode - Режим установки новых положений;|
+|Size|1|uint8_t|[0x00] - InitializationMode - Режим инициализации. В данном режиме происходит инициализация драйвера линейных приводов; [0x02] - ErrorMode - Режим ошибки драйвера линейных приводов. Работа невозможна; [0x03] - ConnectionError - Ошибка соединения с драйвером линейных приводов; [0x04] - ModuleDisabled - Драйвер отключен программно; [0xF1] - SleepMode - Режим ожидания. Механические действия не исполняются; [0xF2] - SettingPositionMode - Режим установки новых положений;|
 
 ### ModuleTypeWorkEnum
 |Field|Size (bytes)|Data Type|Description|
@@ -125,7 +123,7 @@
 |Field|Size (bytes)|Data Type|Description|
 |---|---|---|---|
 |ID|16|UUID|Уникальный идентификатор жеста.|
-|String|Dynemic|StringFormat|Имя жеста|
+|Name|Dynemic|StringFormat|Имя жеста|
 |LastTimeSync|8|long|Время создания или последнего изменения. В Unix времени|
 |IterableGesture|1|bool|Состояние итерируемости жеста (бесконечное повторение жеста)|
 |NumberOfGestureRepetitions|1|uint8_t|Количество повторений жеста|
