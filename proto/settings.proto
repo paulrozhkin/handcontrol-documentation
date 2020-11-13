@@ -1,0 +1,20 @@
+syntax="proto3";
+package settings;
+import "enums.proto";
+
+message GetSettings {
+  enums.ModeType type_work = 1;
+  bool enable_emg = 2;
+  bool enable_display = 3;
+  bool enable_gyro = 4;
+  bool enable_driver = 5;
+}
+
+message SetSettings {
+  enums.ModeType type_work = 1;
+  int32 telemetry_frequency = 2;
+  bool enable_emg = 3;
+  bool enable_display = 4;
+  bool enable_gyro = 5;
+  bool enable_driver = 6;
+}

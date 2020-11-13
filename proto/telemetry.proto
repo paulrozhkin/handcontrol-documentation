@@ -1,0 +1,21 @@
+syntax="proto3";
+package telemetry;
+import "enums.proto";
+import "uuid.proto";
+
+message Telemetry {
+  int32 telemetry_frequency = 1;
+  enums.ModuleStatusType emg_status = 2;
+  enums.ModuleStatusType display_status = 3;
+  enums.ModuleStatusType gyro_status = 4;
+  enums.DriverStatusType driver_status = 5;
+  int64 last_time_sync = 6;
+  int32 emg = 7;
+  uuid.UUID executable_gesture = 8;
+  int32 power = 9;
+  int32 pointer_finger_position = 10;
+  int32 middle_finger_position = 11;
+  int32 ring_finger_position = 12;
+  int32 little_finger_position = 13;
+  int32 thumb_finger_position = 14;
+}

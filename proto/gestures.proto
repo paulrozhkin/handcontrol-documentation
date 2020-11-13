@@ -1,0 +1,52 @@
+syntax = "proto3";
+package telemetry;
+import "uuid.proto";
+
+message GetGestures {
+  int64 last_time_sync = 1;
+  repeated Gesture gestures = 2;
+}
+
+message SaveGesture {
+  int64 time_sync = 1;
+  Gesture gesture = 2;
+}
+
+message DeleteGesture {
+  int64 time_sync = 1;
+  uuid.UUID id = 2;
+}
+
+message PerformGestureById {
+  uuid.UUID id = 1;
+}
+
+message PerformGestureRaw {
+  Gesture gesture = 1;
+}
+
+message SetPositions {
+  int32 pointer_finger_position = 1;
+  int32 middle_finger_position = 2;
+  int32 ring_finger_position = 3;
+  int32 little_finger_position = 4;
+  int32 thumb_finger_position = 5;
+}
+
+message Gesture {
+  uuid.UUID id = 1;
+  string name = 2;
+  int64 last_time_sync = 3;
+  bool iterable = 4;
+  int32 repetitions = 5;
+  repeated GestureAction actions = 6;
+}
+
+message GestureAction {
+  int32 pointer_finger_position = 1;
+  int32 middle_finger_position = 2;
+  int32 ring_finger_position = 3;
+  int32 little_finger_position = 4;
+  int32 thumb_finger_position = 5;
+  int32 delay = 6;
+}
