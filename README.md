@@ -19,7 +19,8 @@
 ---
 ## Documentation
 - [Техническое задание](https://docs.google.com/document/d/1KbQ16ehyuJt8YoWaM7xjhkE0ynpm1GKat7H1k4UXwzY/edit?usp=sharing)
-- [API протеза](https://github.com/paulrozhkin/handcontrol-documentation/blob/master/api.md)
+- [MQTT API протеза](https://github.com/paulrozhkin/handcontrol-documentation/blob/master/api.md)
+- [Bluetooth протеза](https://github.com/paulrozhkin/handcontrol-documentation/blob/master/bluetooth_api.md)
 - [Описание протокола взаимодействия драйвера моторов и управляющего контроллера](https://drive.google.com/file/d/1_azK8TsY6GFS11r03LjgoXlnlsHRx1bY/view?usp=sharing)
 - [Структурные схемы](https://drive.google.com/file/d/1gGquBem_VxTlNn12caVKcv3hVfcEDApx/view?usp=sharingg)
 - [UseCase](https://drive.google.com/file/d/1P3Ixa92nB_NM5jHj8qfTBZ6zH1nHHI05/view?usp=sharing)
