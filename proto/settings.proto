@@ -17,4 +17,5 @@ message SetSettings {
   bool enable_display = 4;
   bool enable_gyro = 5;
   bool enable_driver = 6;
+  bool power_off = 7;
 }
