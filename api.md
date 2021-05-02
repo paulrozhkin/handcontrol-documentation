@@ -1,5 +1,5 @@
 # API для управления протезом
-Для управления протезом используется Bluetooth интерфейс с самописным протоколом и Ethernet интерфейс с протоколом MQTT. Payload для протоколов общий и представляет собой структуры данных, описанные и сериализованные с помощью [Protocol Buffers](https://developers.google.com/protocol-buffers). Сообщения protocol buffers находится в директории [`Proto`](https://github.com/paulrozhkin/handcontrol-documentation/tree/master/proto). Дальнейшее описание будет представлять из себя описание API в виде таблицы и общий раздел Payload с описанием сообщений Protobuf.
+Для управления протезом используется Bluetooth интерфейс с самописным протоколом и Ethernet интерфейс с протоколом MQTT. Payload для протоколов общий и представляет собой структуры данных, описанные и сериализованные с помощью [Protocol Buffers](https://developers.google.com/protocol-buffers). Сообщения protocol buffers находится в [`репозитории arm_prosthesis_raspberry, директория proto`](https://github.com/paulrozhkin/arm_prosthesis_raspberry/tree/main/proto). Дальнейшее описание будет представлять из себя описание API в виде таблицы и общий раздел Payload с описанием сообщений Protobuf.
 
 ## API
 В тиблцев приведено описание API протеза со следующими полями:
@@ -13,7 +13,7 @@
 |---|---|---|---|---|
 |GetOnline|controllers/online|-|Online/Offline|Каждый протез отправляет свой id в этот топик каждые 60 секунд для определения того, что он находится в системе и к нему можно получить доступ. Если протез не отправил данные, то можно считать, что он отключен.|
 |GetOffline|controllers/offline|-|Online/Offline|При обрыве связи с протезом брокер публикует его id (механизм Last Will у MQTT).|
-|Telemetry|{id}/data/telemetry|-|Telemetry|Телеметрия протеза. Содержит актульную информацию о системе. Обновляется минимум раз в секунду.|
+|Telemetry|{id}/data/telemetry|-|Telemetry|Телеметрия протеза. Содержит актульную информацию о системе. Обновляется при подписке на телеметрию через **StartTelemetry**.|
 |GetSettings|{id}/data/settings|-|GetSettings|Топик хранит текущую конфигурацию протеза.|
 |SetSettings|{id}/action/settings|+|SetSettings|Выполнить конфигурацию протеза. После успешного завершения данные в топике **GetSettings** будут обновлены, а в телеметрии будет слаться новое состояния.|
 |GetGestures|{id}/data/gestures|-|GetGestures|Актуальные жесты, хранимые на протезе.|
@@ -32,7 +32,6 @@
 ### Telemetry
 |Field|Description|
 |---|---|
-|telemetry_frequency|Частота отправки телеметрии (от 1Гц до 450Гц)|
 |emg_status|Состояние модуля Emg датчика|
 |display_status|Состояние модуля дисплея|
 |gyro_status|Состояние модуля гироскопа и акселерометра|
@@ -69,7 +68,6 @@
 |Field|Description|
 |---|---|
 |type_work|Текущий режим работы протеза|
-|telemetry_frequency|Частота отправки телеметрии (от 1Гц до 450Гц)|
 |enable_emg|Программное отключение/подключение Emg датчика|
 |enable_display|Программное отключение/подключение подключения дисплея|
 |enable_gyro|Программное отключение/подключение гироскопа и акселерометра|
@@ -103,6 +101,21 @@
 |ring_finger_position|Позиция безымянного пальца|
 |little_finger_position|Позиция мезинца|
 |thumb_finger_position|Позиция большого пальца|
+
+### GetTelemetry
+|Field|Description|
+|---|---|
+|telemetry|Телеметрия устройства|
+
+### StartTelemetry
+|Field|Description|
+|---|---|
+|interval_ms|Интервал отправки телеметрии устройством|
+
+### UpdateLastTimeSync
+|Field|Description|
+|---|---|
+|last_time_sync|Обновленное время синхронизации|
 
 ## Payload typedef
 

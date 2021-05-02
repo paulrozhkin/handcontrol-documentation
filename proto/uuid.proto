@@ -1,6 +1,0 @@
-syntax="proto3";
-package uuid;
-
-message UUID {
-  string value = 1;
-}
