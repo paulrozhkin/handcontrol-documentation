@@ -117,6 +117,16 @@
 |---|---|
 |last_time_sync|Обновленное время синхронизации|
 
+### GetMioPatterns
+|Field|Description|
+|---|---|
+|patterns|Набор паттернов системы.|
+
+### SetMioPatterns
+|Field|Description|
+|---|---|
+|patterns|Обновления паттернов системы.|
+
 ## Payload typedef
 
 ### ModeType
@@ -153,3 +163,9 @@
 |little_finger_position|Позиция мезинца|
 |thumb_finger_position|Позиция большого пальца|
 |delay|Задержка до начала выполнения следующего действия жеста|
+
+### MioPattern
+|Field|Description|
+|---|---|
+|pattern|Идентификатор миоэлектрического паттерна. Жестко задан в системе.|
+|gesture_id|Идентификатор жеста, который должен быть исполнен при активизации паттерна|

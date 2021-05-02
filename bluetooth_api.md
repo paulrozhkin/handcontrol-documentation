@@ -44,6 +44,8 @@
 |GetTelemetry|13|-|GetTelemetry|Текущая телеметрия системы.|
 |StartTelemetry|14|StartTelemetry|ACK/ERR|Подписаться на получение телеметрии устройством. После отключения устройства телеметрия прекратит отправку. Повторная отправка этого запроса невозможна до остановки телеметрии через **StopTelemetry**.|
 |StopTelemetry|15|-|ACK/ERR|Остановить отправку телеметрии.|
+|GetMioPatterns|16|-|GetMioPatterns|Получить набор паттернов системы.|
+|SetMioPatterns|17|SetMioPatterns|ACK/ERR|Обновить паттерны системы.|
 
 
 ### ACK/ERR
