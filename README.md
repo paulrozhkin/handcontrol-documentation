@@ -39,12 +39,15 @@
 Аппаратно-программная система бионического протеза предназначена для людей с отсутствующей конечностью руки до локтевого сустава и может быть применена в области медицинской реабилитации верхних конечностей.
 
 Модель протеза:
+
 <a href="#">
     <img src="https://raw.githubusercontent.com/paulrozhkin/handcontrol-documentation/master/img/3d_model.png" title="3d model" alt="3d model" width="800">
 </a>
 
 Демонстрация работы:
-![video](https://raw.githubusercontent.com/paulrozhkin/handcontrol-documentation/master/resources/video.mp4)
+
+https://user-images.githubusercontent.com/38138387/126069775-825ffeaa-66c6-4a8a-a21e-2c4df761032e.mp4
+
 ---
 
 ## Documentation
