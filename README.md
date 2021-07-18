@@ -13,8 +13,8 @@
 - [Контроллер управления линейными приводами на STM32F103C8T6](https://github.com/paulrozhkin/handcontrol-motor-controller)
 - [Приложение для конфигурирования протеза для ПК на WPF](https://github.com/paulrozhkin/HandControlApplication)
 - [Приложение для управления протезом для Android](https://github.com/ForsaiR/HandControlAndroidAplication)
-- [Схемотехника драйвера моторов (Altium Designer)](https://github.com/paulrozhkin/DCDriverShematic)
-- [Схемотехника контроллера управления (Altium Designer)](https://github.com/paulrozhkin/ArmProsthesisShematic)
+- [Схемотехника драйвера моторов STM32F103C8T6 (Altium Designer)](https://github.com/paulrozhkin/DCDriverShematic)
+- [Схемотехника контроллера управления Rasbperry Pi Zero W (Altium Designer)](https://github.com/paulrozhkin/raspberry-prosthesis-circuit)
 - [Сервер для одновременной работы с несколькими протезами по MQTT на Kotlin](https://github.com/paulrozhkin/hand-control-mqtt)
 - [MQTT proxy для контроллера управления протеза для STM32F767ZITX](https://github.com/paulrozhkin/handcontrol-mqtt-proxy)
 
@@ -25,6 +25,7 @@
 - [Протез V1 (терминал для ПК)](https://github.com/paulrozhkin/RoboHandPythonOld)
 - [Протез V2 (приложение для Android)](https://bitbucket.org/blackiiifox/handcontrolanroid/)
 - [Протез V2 (контроллер управления)](https://bitbucket.org/blackiiifox/robohand/src/master/)
+- [Схемотехника контроллера управления STM32F407 (Altium Designer)](https://github.com/paulrozhkin/ArmProsthesisShematic)
 ---
 
 ## Description
